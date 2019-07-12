@@ -1,0 +1,30 @@
+---
+common-css:
+  - "/css/bootstrap.min.css"
+  - "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Open+Sans:300italic,400italic,700italic,800italic,300,400,700,800"
+  - "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
+common-js:
+  - "/js/jquery-1.11.2.min.js"
+  - "/js/bootstrap.min.js"
+  - "/js/main.js"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <!-- Beautiful Jekyll | MIT license | Copyright Dean Attali 2016 -->
+  {% include head.html %}
+
+  <body>
+
+    {% include gtm_body.html %}
+  
+    {% include nav.html %}
+
+    {{ content }}
+
+    {% include footer.html %}
+  
+    {% include footer-scripts.html %}
+  
+  </body>
+</html>

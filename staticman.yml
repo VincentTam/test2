@@ -94,7 +94,7 @@ comments:
   # List of transformations to apply to any of the fields supplied. Keys are
   # the name of the field and values are possible transformation types.
   transforms:
-    email: md5
+    email: sha256
 
   # reCAPTCHA (OPTIONAL)
   # To enable reCAPTCHA:
@@ -102,9 +102,9 @@ comments:
   # 2. Register your domain at https://www.google.com/recaptcha/ and choose reCAPTCHA V2
   # 3. Uncomment `siteKey` and `secret` and fill them in with your values
   reCaptcha:
-    enabled: false
-    #siteKey: ""
+    enabled: true
+    siteKey: "6Lc8hK0UAAAAAIEBh7mR9J8yIpXIgs85oq0QfrXL"
     # ENCRYPT reCaptcha secret key using Staticman /encrypt endpoint
     # i.e. https://{STATICMAN API INSTANCE}/v3/encrypt/{your-site-secret}
     # For more information, visit https://staticman.net/docs/encryption
-    #secret: ""
+    secret: "o9Sgvs5634hJmFg235kKotgxGdT/TzM1s4xDbs2sOEAD008xx6q1wgzjBJw1DYSUxEqmtXYpnN2LBtaPU+ji8U0F1qm0gkhYo20jR1fJOYRfmjqkovZ+dtAYFfrF1wlwg3KBMdaYLla6zmmi69PXwVmFwHh1PmU46qscl25tPDLQyNPN7m5ZNvlZWd2sAwj29wI9HLNHd5Sme5caXvGx724nOl5dZ7hGa00tPgBIQGTfm91wnT5nxJ/QqW0YLaC+zamJPnl3jrdFGKAfRNrnkL6BqUfGW0dbC+Mpvmt6qqdhZcoWJCFhyt1Korp4ple4ZMwwvyxz3tdDEO0rNXRK5A=="

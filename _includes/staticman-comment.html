@@ -4,11 +4,11 @@
   </div>
   <div class="comment__content-wrapper">
     <h4 class="comment__author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-      {% unless include.url == blank %}
+      {% if include.url.size > 0 %}
         <span itemprop="name"><a rel="external nofollow" itemprop="url" href="{{ include.url }}">{{ include.name }}</a></span>
       {% else %}
         <span itemprop="name">{{ include.name }}</span>
-      {% endunless %}
+      {% endif %}
     </h4>
     <p class="comment__date">
       {% if include.date %}

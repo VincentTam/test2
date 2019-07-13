@@ -1,5 +1,5 @@
 _id: 4f218420-a564-11e9-8d9a-a35c7799e58f
-message: "### Mathjax test\r\n\r\nWhen $a \\\\ne 0$, there are two solutions to \\\\(ax^2 + bx + c = 0\\\\) and they are\r\n\\\\[x = {-b \\\\pm \\\\sqrt{b^2-4ac} \\\\over 2a}\\\\]."
+message: "### Mathjax test\r\n\r\nWhen \\\\(a \\\\ne 0\\\\), there are two solutions to \\\\(ax^2 + bx + c = 0\\\\) and they are\r\n\\\\[x = {-b \\\\pm \\\\sqrt{b^2-4ac} \\\\over 2a}\\\\]."
 name: Mathjax tester
 email: 357a20e8c56e69d6f9734d23ef9517e8
 url: ''

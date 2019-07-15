@@ -17,7 +17,7 @@
     </div>
     <!-- End static comments -->
     <!-- Start new comment form -->
-    <div class="page__comments-form">
+    <div class="page__comments-form hidden">
       <h3 class="page__comments-title">{{ site.data.ui-text[site.locale].comments_label | default: "Leave a Comment" }}</h3>
       <p class="small">{{ site.data.ui-text[site.locale].comment_form_info | default: "Your email address will not be published. Required fields are marked" }} <span class="required">*</span></p>
       <form id="new_comment" class="page__comments-form js-form form" method="post" action="{{ site.staticman.endpoint | default: 'https://staticman3.herokuapp.com/v3/entry/github/' }}{{ site.staticman.repository }}/{{ site.staticman.branch }}/comments">
@@ -62,6 +62,7 @@
       </form>
     </div>
     <!-- End new comment form -->
+	<noscript><div class="alert alert-warning">Please enable JavaScript to post comments powered by Staticman.</div></noscript>
     <!-- Load reCaptcha if site key is set -->
     {% if site.staticman.reCaptcha.siteKey %}
       <script async src="https://www.google.com/recaptcha/api.js"></script>

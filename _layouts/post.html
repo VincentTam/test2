@@ -1,7 +1,8 @@
 ---
-layout: base
+layout: default
 css:
-  - "/css/bootstrap-social.css"
+  - "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css":
+      sri: "sha256-rFMLRbqAytD9ic/37Rnzr2Ycy/RlpxE5QH52h7VoIZo="
 ---
 
 {% include header.html type="post" %}
@@ -33,21 +34,12 @@ css:
         </div>
       {% endif %}
 
-      <article role="main" class="blog-post">
+      <article role="main" class="main-content post-content blog-post">
         {{ content }}
       </article>
 
       {% if page.tags.size > 0 %}
-        <div class="blog-tags">
-          Tags:
-          {% if site.link-tags %}
-          {% for tag in page.tags %}
-            <a href="{{ '/tags' | relative_url }}#{{- tag -}}">{{- tag -}}</a>
-          {% endfor %}
-          {% else %}
-            {{ page.tags | join: ", " }}
-          {% endif %}
-        </div>
+      {% include tag-list.html post=page %}
       {% endif %}
 
       {% if page.social-share %}
@@ -67,18 +59,9 @@ css:
         {% endif %}
       </ul>
 
-      {% if page.comments %}
-        <div class="disqus-comments">
-          {% include disqus.html %}
-        </div>
-          {% include fb-comment.html %}
-        <div class="staticman-comments">
-          {% include staticman-comments.html %}
-        </div>
-        <div class="justcomments-comments">
-          {% include just_comments.html %}
-        </div>
-      {% endif %}
+      {%- if page.comments %}
+      {% include comments.html %}
+      {%- endif %}
     </div>
   </div>
 </div>

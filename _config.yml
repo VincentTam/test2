@@ -28,35 +28,17 @@ navbar-links:
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/img/avatar-icon.png"
+avatar: "/assets/img/avatar-icon.png"
 
 # If you want to have an image logo in the top-left corner instead of the title text,
 # then specify the following parameter
 # title-img: /path/to/image
 
 # --- Background colour/image options --- #
-
-# Personalize the colors in your website. Colour values can be any valid CSS colour
-
-navbar-col: "#F5F5F5"
-navbar-text-col: "#404040"
-navbar-children-col: "#F5F5F5"
-page-col: "#FFFFFF"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-footer-col: "#F5F5F5"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
-
-# Alternatively, the navbar, footer, and page background can be set to use background images
-# instead of colour
-
-# navbar-img: "/img/bgimage.png"
-# footer-img: "/img/bgimage.png"
-# page-img: "/img/bgimage.png"
-
+# All style config are moved to _sass/beautiful-jekyll/_variables.scss
+# User style customization goes to _sass/_customize.scss
 css:
-  main: "/css/main.css"
+  main: "/assets/css/main.css"
 
 # --- Footer options --- #
 
@@ -149,21 +131,13 @@ staticman:
 # Truncates the excerpt to the specified number of words on the index page
 excerpt_length: 50
 
-# Character used to separate site title and description in HTML document title
-# and RSS feed title
-title-separator: "-"
-
 # --- Don't need to touch anything below here (but you can if you want) --- #
 
-# Output options (more information on Jekyll's site)
-timezone: "America/Vancouver"
-markdown: kramdown
-highlighter: rouge
-permalink: /:year-:month-:day-:title/
+# Output options (https://jekyllrb.com/docs/configuration/default/)
+# Only those different from default is used here
+timezone: "UTC" # "America/Vancouver"
+permalink: pretty
 paginate: 5
-
-kramdown:
-  input: GFM
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
@@ -182,19 +156,11 @@ defaults:
       layout: "page"
       show-avatar: true
 
-# Use tags index page and make tags on each post clickable
-link-tags: true
-
 # Exclude these files from production site
 exclude:
-  - CHANGELOG.md
-  - CNAME
-  - Dockerfile
-  - Gemfile
-  - Gemfile.lock
   - LICENSE
   - README.md
-  - Vagrantfile
+  - staticman.yml
 
 # prose.io config
 prose:
@@ -207,9 +173,8 @@ prose:
     - _config.yml
     - /_layouts
     - /_includes
-    - /css
-    - /img
-    - /js
+    - /_sass
+    - /assets
   metadata:
     _posts:
       - name: "layout"
@@ -248,9 +213,36 @@ prose:
           label: "Publish"
           help: "Check to publish post, uncheck to hide."
 
+# Require.JS config, mods are script module to be executed on website, libs are
+# their dependent libraries. Note that jQuery UI is listed only for convenience,
+# it is unused and not loaded by default, until any script module explicitly
+# depends on it.
+requirejs:
+  mods:
+    - cssrelpreload
+    - beautiful-jekyll
+  libs:
+    - name: jquery
+      href: 'https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min'
+      sri : 'sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh'
+    - name: jqueryui
+      href: 'https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min'
+      sri : 'sha384-PtTRqvDhycIBU6x1wwIqnbDo8adeWIWP3AHmnrvccafo35E7oIvW7HPXn2YimvWu'
+    - name: bootstrap
+      href: 'https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min'
+      sri : 'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd'
+    - name: domReady
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/require-domReady/2.0.1/domReady.min'
+      sri : 'sha384-Ink8nCp9Nf+OT+aAm158lxh0C6NiqsnYLSKqJ5SpOBGrNJGI+PiliRbiYh3QEgo5'
+    - name: cssrelpreload
+      href: 'https://cdn.jsdelivr.net/npm/fg-loadcss@2.1.0/dist/cssrelpreload.min'
+      sri : 'sha384-sQ0Z7imIAcp1/Z47hsy2G3MgW9DiAJJnAyLej+zjg0mJcwapL9pEzZU0DU+QYXq2'
+    - name: recaptcha
+      href: 'https://www.google.com/recaptcha/api'
+
 plugins:
+  - jekyll-remote-theme
   - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-feed
 
-# Beautiful Jekyll / Dean Attali
-# 2fc73a3a967e97599c9763d05e564189

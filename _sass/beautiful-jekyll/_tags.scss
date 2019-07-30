@@ -1,0 +1,42 @@
+/* Tags page */
+
+.btn-tag {
+	&:before {
+		@include fas-solid("\f02b", null, 0.3em);
+		vertical-align: middle;
+	}
+	& > .badge {
+		margin-left: 0.3em;
+	}
+}
+
+.btn-tag-text {
+	display: inline-block;
+	width: 5em;
+	vertical-align: middle;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#tag-list {
+	list-style-type: none;
+	-webkit-padding-start: 0;
+	        padding-inline-start: 0;
+	display: grid;
+	grid-gap: ($padding-base-vertical * 2);
+	justify-items: center;
+	grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+}
+
+.post-list {
+	a {
+		text-decoration: none;
+		font-size: $font-size-h3;
+		color: $text-col;
+	}
+	& > h2:before {
+		@include fas-solid("\f02b", null, 0.3em);
+		vertical-align: middle;
+	}
+}

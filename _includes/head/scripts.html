@@ -1,0 +1,43 @@
+{% comment %}
+Migrating from manual script calling to Require.JS since June 2019
+{% endcomment %}
+{%- assign rjsmods = site.requirejs.mods -%}
+{%- if layout.requirejs -%}{%- assign rjsmods = rjsmods | concat: layout.requirejs.mods -%}{%- endif -%}
+{%- if page.requirejs   -%}{%- assign rjsmods = rjsmods | concat: page.requirejs.mods   -%}{%- endif -%}
+{%- if page.comments and site.staticman.repository and site.staticman.branch -%}
+{%- assign rjsmods = rjsmods | push: 'staticman' -%}
+{%- endif -%}
+
+{%- if rjsmods -%}
+<!-- Require.JS -->
+<script>
+var require = {
+	deps: {{- rjsmods | compact | uniq | jsonify -}},
+	baseUrl: '{{ "assets/js" | relative_url }}',
+	shim: {
+		bootstrap: { deps: ['jquery', 'domReady!'] }
+	},
+	onNodeCreated: function(node, config, module, path) {
+		var sri;
+		sri = {
+			{% for lib in site.requirejs.libs %}
+			{%- if lib.sri -%}
+			{{ lib.name }} : '{{ lib.sri }}',
+			{% endif %}
+			{%- endfor -%}
+		};
+		if (sri[module]) {
+			node.setAttribute('integrity', sri[module]);
+			node.setAttribute('crossorigin', 'anonymous');
+		}
+	},
+	paths: {
+		{%- for lib in site.requirejs.libs %}
+		{{ lib.name }} : '{{ lib.href }}',
+		{%- endfor %}
+	}
+};
+</script>
+<script async="" src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-SR31ERzVNj6JBG6/XGyTV7pV54XEQQ4IT2mEivl11iiTXxHPKN6DxcTV30t4uE0A" crossorigin="anonymous"></script>
+<!-- End Require.JS -->
+{%- endif -%}

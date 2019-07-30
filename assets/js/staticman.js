@@ -1,4 +1,5 @@
 ---
+layout: null
 ---
 {%- assign deps = 'jquery,domReady!' | split: ',' -%}
 {%- if site.staticman.reCaptcha.siteKey -%}
@@ -6,6 +7,8 @@
 {%- endif -%}
 
 define ({{ deps | jsonify }}, function ($) {
+
+$('.page__comments-form').removeClass('hidden');
 
 $('#new_comment').submit(function () {
 	var form = this;

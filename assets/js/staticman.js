@@ -8,53 +8,35 @@ layout: null
 
 define ({{ deps | jsonify }}, function ($) {
 
-$('.page__comments-form').removeClass('hidden');
+	$('#staticman-form-wrapper').removeClass('hidden');
 
-$('#new_comment').submit(function () {
-	var form = this;
+	$('#new_comment').submit(function () {
+		var form = this;
 
-	$(form).addClass('disabled');
+		{% assign sm = site.staticman -%}
+		var endpt = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}'.replace(/\/$/, '');
 
-	{% assign sm = site.staticman -%}
-	var endpoint = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}';
-	var repository = '{{ sm.repository }}';
-	var branch = '{{ sm.branch }}';
+		$.ajax({
+			method: $(this).attr('method'),
+			url: [ endpt, '{{sm.repository}}', '{{sm.branch}}', 'comments' ].join('/'),
+			data: $(this).serialize(),
+			success: function (data, status, jqXHR) {
+				$('#staticman-form-wrapper *[type="submit"]').fadeOut();
+				{%- if sm.reCaptcha.siteKey %}
+				$('.g-recaptcha').fadeOut();
+				{%- endif %}
+				$('#staticman-notice-success').removeClass('hidden');
+				$('#staticman-notice-failure').addClass('hidden');
+			},
+			error: function (jqXHR, status, error) {
+				console.log('Error in form submission: ' + error);
+				console.log(jqXHR);
+				$('#staticman-notice-success').addClass('hidden');
+				$('#staticman-notice-failure').removeClass('hidden');
+			}
+		});
 
-	$.ajax({
-		type: $(this).attr('method'),
-		url: endpoint + repository + '/' + branch + '/comments',
-		data: $(this).serialize(),
-		contentType: 'application/x-www-form-urlencoded',
-		success: function (data) {
-			$('#comment-form-submit').addClass('hidden');
-			$('#comment-form-submitted').removeClass('hidden');
-			$('.page__comments-form .js-notice').removeClass('notice--danger');
-			$('.page__comments-form .js-notice').addClass('notice--success');
-			showAlert('success');
-		},
-		error: function (err) {
-			console.log(err);
-			$('#comment-form-submitted').addClass('hidden');
-			$('#comment-form-submit').removeClass('hidden');
-			$('.page__comments-form .js-notice').removeClass('notice--success');
-			$('.page__comments-form .js-notice').addClass('notice--danger');
-			showAlert('failure');
-			$(form).removeClass('disabled');
-		}
+		return false;
 	});
-
-	return false;
-});
-
-function showAlert(message) {
-	$('.page__comments-form .js-notice').removeClass('hidden');
-	if (message == 'success') {
-		$('.page__comments-form .js-notice-text-success').removeClass('hidden');
-		$('.page__comments-form .js-notice-text-failure').addClass('hidden');
-	} else {
-		$('.page__comments-form .js-notice-text-success').addClass('hidden');
-		$('.page__comments-form .js-notice-text-failure').removeClass('hidden');
-	}
-}
 
 });

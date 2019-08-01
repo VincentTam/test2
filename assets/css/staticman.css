@@ -29,7 +29,7 @@
 #staticman-form-wrapper input[type="file"]:focus, #staticman-form-wrapper input[type="radio"]:focus, #staticman-form-wrapper input[type="checkbox"]:focus {
 	box-shadow: none;
 }
-#staticman-form-wrapper .help-block {
+#staticman-form-wrapper .field-help {
 	margin-bottom: 1em;
 }
 /*

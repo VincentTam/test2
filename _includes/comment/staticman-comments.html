@@ -1,5 +1,5 @@
 {% if site.data.comments[page.slug] %}
-<section class="staticman-comments comments-container page__comments">
+<section class="staticman-comments comments-container">
 <!-- Start static comments -->
 <h2>{{ site.data.ui-text[site.locale].comments_title | default: "Comments" }}</h2>
 {% assign comments = site.data.comments[page.slug] | sort %}
@@ -18,19 +18,19 @@
 <!-- Start new comment form -->
 <section id="staticman-form-wrapper" class="hidden">
 <h3>{{ site.data.ui-text[site.locale].comments_label | default: "Leave a Comment" }}</h3>
-<form id="new_comment" class="page__comments-form clearfix" method="post">
+<form id="new_comment" class="clearfix" method="post">
 	<fieldset class="form-group">
-		<textarea type="text" rows="6" name="fields[message]" tabindex="1" placeholder="{{ site.data.ui-text[site.locale].comment_form_comment_label | default: "Comment" }}"></textarea>
-		<div class="small help-block"><a href="https://kramdown.gettalong.org/syntax.html">{{ site.data.ui-text[site.locale].comment_form_md_info | default: "Markdown is supported." }}</a></div>
+		<textarea aria-label="Your comment" type="text" rows="5" name="fields[message]" placeholder="Your comment"></textarea>
+		<div class="small field-help"><a href="https://kramdown.gettalong.org/syntax.html">Markdown is supported.</a> All HTML tags are discarded.</div>
 	</fieldset>
 	<fieldset class="form-group">
-		<input type="text" name="fields[name]" tabindex="2" placeholder="{{ site.data.ui-text[site.locale].comment_form_name_label | default: "Name" }}" />
+		<input aria-label="Name" type="text" name="fields[name]" placeholder="Name" />
 	</fieldset>
 	<fieldset class="form-group">
-		<input type="email" name="fields[email]" tabindex="3" placeholder="{{ site.data.ui-text[site.locale].comment_form_email_label | default: "Email address" }}" />
+		<input aria-label="Email (for avatar only, not disclosed)" type="email" name="fields[email]" placeholder="Email (for avatar only, not disclosed)" />
 	</fieldset>
 	<fieldset class="form-group">
-		<input type="url" name="fields[url]" tabindex="4" placeholder="{{ site.data.ui-text[site.locale].comment_form_website_label | default: "Website (optional)" }}" />
+		<input aria-label="Website (optional)" type="url" name="fields[url]" placeholder="Website (optional)" />
 	</fieldset>
 
 	<input type="hidden" name="options[origin]" value="{{ page.url | absolute_url }}">
@@ -40,13 +40,13 @@
 	<input type="hidden" name="options[reCaptcha][secret]"  value="{{ site.staticman.reCaptcha.secret  }}">
 	{% endif %}
 
-	<div id="staticman-notice-success" class="alert alert-success hidden">{{ site.data.ui-text[site.locale].comment_success_msg | default: "Thanks for your comment! It will show on the site once it has been approved." }}</div>
-	<div id="staticman-notice-failure" class="alert alert-danger hidden">{{ site.data.ui-text[site.locale].comment_error_msg | default: "Sorry, there was an error with your submission. Please make sure all required fields have been completed and try again." }}</div>
+	<div id="staticman-notice-success" class="alert alert-success hidden">Thanks for your comment! It will show on the site once it has been approved.</div>
+	<div id="staticman-notice-failure" class="alert alert-danger hidden">Error occurred during comment submission. Please contact site owner if problem persists. Error is: <strong id="staticman-ajax-error"></strong></div>
 
 	{% if site.staticman.reCaptcha.siteKey %}
 	<fieldset class="pull-right g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></fieldset>
 	{% endif %}
-	<button type="submit" tabindex="5" class="btn btn-primary">{{ site.data.ui-text[site.locale].comment_btn_submit | default: "Submit Comment" }}</button>
+	<button id="staticman-submit-btn" type="submit" class="btn btn-primary">Submit Comment</button>
 </form>
 </section>
 <!-- End new comment form -->

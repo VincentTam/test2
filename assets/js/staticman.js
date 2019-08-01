@@ -2,7 +2,8 @@
 layout: null
 ---
 {%- assign deps = 'jquery,domReady!' | split: ',' -%}
-{%- if site.staticman.reCaptcha.siteKey -%}
+{%- assign sm = site.staticman -%}
+{%- if sm.reCaptcha.siteKey -%}
 	{%- assign deps = deps | push: 'recaptcha' -%}
 {%- endif -%}
 
@@ -10,10 +11,11 @@ define ({{ deps | jsonify }}, function ($) {
 
 	$('#staticman-form-wrapper').removeClass('hidden');
 
-	$('#new_comment').submit(function () {
-		var form = this;
+	$('#staticman-submit-btn').click( function() {
+		$('#staticman-notice-failure').addClass('hidden');
+	});
 
-		{% assign sm = site.staticman -%}
+	$('#new_comment').submit(function () {
 		var endpt = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}'.replace(/\/$/, '');
 
 		$.ajax({
@@ -21,7 +23,7 @@ define ({{ deps | jsonify }}, function ($) {
 			url: [ endpt, '{{sm.repository}}', '{{sm.branch}}', 'comments' ].join('/'),
 			data: $(this).serialize(),
 			success: function (data, status, jqXHR) {
-				$('#staticman-form-wrapper *[type="submit"]').fadeOut();
+				$('#staticman-submit-btn').fadeOut();
 				{%- if sm.reCaptcha.siteKey %}
 				$('.g-recaptcha').fadeOut();
 				{%- endif %}
@@ -33,6 +35,13 @@ define ({{ deps | jsonify }}, function ($) {
 				console.log(jqXHR);
 				$('#staticman-notice-success').addClass('hidden');
 				$('#staticman-notice-failure').removeClass('hidden');
+				if (jqXHR.responseJSON.message) {
+					$('#staticman-ajax-error').html(jqXHR.responseJSON.message);
+				} else if (jqXHR.responseJSON.rawError.message) {
+					$('#staticman-ajax-error').html(jqXHR.responseJSON.rawError.message);
+				} else {
+					$('#staticman-ajax-error').html(error);
+				};
 			}
 		});
 

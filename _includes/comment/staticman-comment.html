@@ -1,21 +1,17 @@
 <article id="comment{{ include.index }}" class="comment clearfix">
 <img class="comment-avatar pull-left img-circle" src="https://secure.gravatar.com/avatar/{{ include.email }}?d=mp&s=100&r=g" alt="{{ include.name }}">
 <div>
-	<span class="comment-author">
+	<span class="comment-author h3">
 	{% if include.url.size > 0 %}
 		<a rel="external nofollow noopener" href="{{ include.url }}">{{ include.name }}</a>
 	{% else %}
 		{{ include.name }}
 	{% endif %}
 	</span>
-	{% if include.date %}
 	&#x2022;
 	<span class="post-meta">
-		{% if include.index %}<a href="#comment{{ include.index }}">{% endif %}
 		<time datetime="{{ include.date | date_to_xmlschema }}">{{ include.date | date: "%B %-d, %Y" }}</time>
-		{% if include.index %}</a>{% endif %}
 	</span>
-	{% endif %}
 	<div class="comment-text">{{ include.message | strip_html | strip | markdownify }}</div>
 </div>
 </article>

@@ -1,24 +1,20 @@
 {% if site.data.comments[page.slug] %}
 <section class="staticman-comments comments-container">
 <!-- Start static comments -->
-<h2>{{ site.data.ui-text[site.locale].comments_title | default: "Comments" }}</h2>
-{% assign comments = site.data.comments[page.slug] | sort %}
-{% for comment in comments %}
-	{% assign email = comment[1].email %}
-	{% assign name = comment[1].name %}
-	{% assign url = comment[1].url %}
-	{% assign date = comment[1].date %}
-	{% assign message = comment[1].message %}
-	{% include comment/staticman-comment.html index=forloop.index email=email name=name url=url date=date message=message %}
-{% endfor %}
+<h2 class="text-center">Comments</h2>
+{% assign comments = site.data.comments[page.slug] | sort -%}
+{%- for comment in comments -%}
+	{%- comment %}comment[0] is file name{% endcomment -%}
+	{%- include comment/staticman-comment.html index=forloop.index comment=comment.last -%}
+{%- endfor %}
 <!-- End static comments -->
 </section>
-{% endif %}
+{%- endif %}
 
 <!-- Start new comment form -->
 <section id="staticman-form-wrapper" class="hidden">
 <h3>{{ site.data.ui-text[site.locale].comments_label | default: "Leave a Comment" }}</h3>
-<form id="new_comment" class="clearfix" method="post">
+<form id="new_comment" method="post">
 	<fieldset class="form-group">
 		<textarea aria-label="Your comment" type="text" rows="5" name="fields[message]" placeholder="Your comment"></textarea>
 		<div class="small field-help"><a href="https://kramdown.gettalong.org/syntax.html">Markdown is supported.</a> All HTML tags are discarded.</div>
@@ -40,13 +36,16 @@
 	<input type="hidden" name="options[reCaptcha][secret]"  value="{{ site.staticman.reCaptcha.secret  }}">
 	{% endif %}
 
+	<div id="staticman-submit-wrapper" class="form-group clearfix">
+		{% if site.staticman.reCaptcha.siteKey %}
+		<div class="pull-right g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></div>
+		{% endif %}
+		<button id="staticman-submit-btn" type="submit" class="btn btn-primary">Submit Comment</button>
+		<span class="spinner"></span>
+	</div>
+
 	<div id="staticman-notice-success" class="alert alert-success hidden">Thanks for your comment! It will show on the site once it has been approved.</div>
 	<div id="staticman-notice-failure" class="alert alert-danger hidden">Error occurred during comment submission. Please contact site owner if problem persists. Error is: <strong id="staticman-ajax-error"></strong></div>
-
-	{% if site.staticman.reCaptcha.siteKey %}
-	<fieldset class="pull-right g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></fieldset>
-	{% endif %}
-	<button id="staticman-submit-btn" type="submit" class="btn btn-primary">Submit Comment</button>
 </form>
 </section>
 <!-- End new comment form -->

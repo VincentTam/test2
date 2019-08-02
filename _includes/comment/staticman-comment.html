@@ -1,17 +1,18 @@
-<article id="comment{{ include.index }}" class="comment clearfix">
-<img class="comment-avatar pull-left img-circle" src="https://secure.gravatar.com/avatar/{{ include.email }}?d=mp&s=100&r=g" alt="{{ include.name }}">
+{%- assign c = include.comment -%}
+<article id="comment-{{ c._id | slice: 0,8 }}" class="comment clearfix">
+<img class="comment-avatar pull-left img-circle" src="https://secure.gravatar.com/avatar/{{ c.email }}?d=mp&s=100&r=g" alt="{{ c.name }}">
 <div>
 	<span class="comment-author h3">
-	{% if include.url.size > 0 %}
-		<a rel="external nofollow noopener" href="{{ include.url }}">{{ include.name }}</a>
-	{% else %}
-		{{ include.name }}
-	{% endif %}
+	{%- if c.url.size > 0 %}
+		<a rel="external nofollow noopener" href="{{ c.url }}">{{ c.name }}</a>
+	{%- else %}
+		{{ c.name }}
+	{%- endif %}
 	</span>
 	&#x2022;
 	<span class="post-meta">
-		<time datetime="{{ include.date | date_to_xmlschema }}">{{ include.date | date: "%B %-d, %Y" }}</time>
+		<time datetime="{{ c.date | date_to_xmlschema }}">{{ c.date | date: "%B %-d, %Y" }}</time>
 	</span>
-	<div class="comment-text">{{ include.message | strip_html | strip | markdownify }}</div>
+	<div class="comment-text">{{ c.message | strip_html | strip | markdownify }}</div>
 </div>
 </article>

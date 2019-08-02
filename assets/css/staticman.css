@@ -61,3 +61,28 @@
 		display: none;
 	}
 }
+
+/* spinner from loading.io */
+.spinner {
+	display: inline-block;
+	width: 34px;
+	height: 34px;
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+	vertical-align: middle;
+}
+.spinner:after {
+	content: " ";
+	display: block;
+	width: 34px;
+	height: 34px;
+	border-radius: 50%;
+	border-width: 0.3em;
+	border-style: solid;
+	border-color: #444 transparent #444 transparent;
+	animation: spinner 2s linear infinite;
+}
+@keyframes spinner {
+	0%   { transform: rotate(0deg)   }
+	100% { transform: rotate(360deg) }
+}

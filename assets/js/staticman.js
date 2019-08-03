@@ -9,31 +9,39 @@ layout: null
 
 define ({{ deps | jsonify }}, function ($) {
 
-	$('#staticman-form-wrapper').removeClass('hidden');
-	$('#staticman-submit-wrapper > .spinner').hide();
+	var $spinner = $('#staticman-submit-wrapper > .spinner');
+	var $form    = $('#staticman-form-wrapper > form');
+	var $msgOk   = $form.children('.alert-success');
+	var $msgBad  = $form.children('.alert-danger');
 
-	$('#staticman-submit-btn').click( function(ev) {
-		$('#staticman-notice-failure').addClass('hidden');
-		$('#staticman-submit-wrapper > .spinner').fadeIn();
+	$('#staticman-form-wrapper').removeClass('hidden');
+	$spinner.hide();
+
+	$('#staticman-submit-btn').click( function() {
+		$msgBad.addClass('hidden');
+		$spinner.fadeIn();
 	});
 
-	$('#new_comment').submit(function (ev) {
+	$form.submit(function (event) {
+
 		var endpt = '{{ sm.endpoint | default: "https://staticman3.herokuapp.com/v3/entry/github/" }}'.replace(/\/$/, '');
 
+		event.preventDefault();
+
 		$.ajax({
-			method: $(this).attr('method'),
+			method: 'post',
 			url: [ endpt, '{{sm.repository}}', '{{sm.branch}}', 'comments' ].join('/'),
-			data: $(this).serialize(),
+			data: $form.serialize(),
 			success: function (data, status, jqXHR) {
 				$('#staticman-submit-wrapper').fadeOut();
-				$('#staticman-notice-success').removeClass('hidden');
-				$('#staticman-notice-failure').addClass('hidden');
+				$msgOk.removeClass('hidden');
+				$msgBad.addClass('hidden');
 			},
 			error: function (jqXHR, status, error) {
 				console.log('Error in form submission: ' + error);
 				console.log(jqXHR);
-				$('#staticman-notice-success').addClass('hidden');
-				$('#staticman-notice-failure').removeClass('hidden');
+				$msgOk.addClass('hidden');
+				$msgBad.removeClass('hidden');
 				if (jqXHR.responseJSON.message) {
 					$('#staticman-ajax-error').html(jqXHR.responseJSON.message);
 				} else if (jqXHR.responseJSON.rawError.message) {
@@ -43,11 +51,9 @@ define ({{ deps | jsonify }}, function ($) {
 				};
 			},
 			complete: function (jqXHR, status) {
-				$('#staticman-submit-wrapper > .spinner').fadeOut();
+				$spinner.fadeOut();
 			},
 		});
-
-		ev.preventDefault();
 	});
 
 });

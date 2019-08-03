@@ -14,7 +14,7 @@
 <!-- Start new comment form -->
 <section id="staticman-form-wrapper" class="hidden">
 <h3>{{ site.data.ui-text[site.locale].comments_label | default: "Leave a Comment" }}</h3>
-<form id="new_comment" method="post">
+<form method="get" action="{{ '' | absolute_url }}">
 	<fieldset class="form-group">
 		<textarea aria-label="Your comment" type="text" rows="5" name="fields[message]" placeholder="Your comment"></textarea>
 		<div class="small field-help"><a href="https://kramdown.gettalong.org/syntax.html">Markdown is supported.</a> All HTML tags are discarded.</div>
@@ -44,8 +44,8 @@
 		<span class="spinner"></span>
 	</div>
 
-	<div id="staticman-notice-success" class="alert alert-success hidden">Thanks for your comment! It will show on the site once it has been approved.</div>
-	<div id="staticman-notice-failure" class="alert alert-danger hidden">Error occurred during comment submission. Please contact site owner if problem persists. Error is: <strong id="staticman-ajax-error"></strong></div>
+	<div class="alert alert-success hidden">Thanks for your comment! It will show on the site once it has been approved.</div>
+	<div class="alert alert-danger hidden">Error occurred during comment submission. Please contact site owner if problem persists. Error is: <strong id="staticman-ajax-error"></strong></div>
 </form>
 </section>
 <!-- End new comment form -->

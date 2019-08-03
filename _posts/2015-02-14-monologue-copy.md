@@ -1,15 +1,15 @@
 ---
 layout: post
-title: Excerpt marker
-subtitle: Use except_separator in front matter
-excerpt_separator: "<!-- more -->"
+title: Custom excerpt
+subtitle: Same post as before
+excerpt: "**Look ma!** _Markdown in excerpt_ ~~can be recognised!~~"
 tags: [books, shakespeare, test]
 ---
 
 To be, or not to be--that is the question:
 Whether 'tis nobler in the mind to suffer
 The slings and arrows of outrageous fortune
-<!-- more -->Or to take arms against a sea of troubles
+Or to take arms against a sea of troubles
 And by opposing end them. To die, to sleep--
 No more--and by a sleep to say we end
 The heartache, and the thousand natural shocks

@@ -13,6 +13,6 @@
 	<span class="post-meta">
 		<time datetime="{{ c.date | date_to_xmlschema }}">{{ c.date | date: "%B %-d, %Y" }}</time>
 	</span>
-	<div class="comment-text">{{ c.message | strip_html | strip | markdownify }}</div>
+	<div class="comment-text">{{ c.message | xml_escape | markdownify }}</div>
 </div>
 </article>

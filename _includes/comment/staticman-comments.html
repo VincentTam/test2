@@ -17,7 +17,7 @@
 <form method="get" action="{{ '' | absolute_url }}">
 	<fieldset class="form-group">
 		<textarea aria-label="Your comment" type="text" rows="5" name="fields[message]" placeholder="Your comment"></textarea>
-		<div class="small field-help"><a href="https://kramdown.gettalong.org/syntax.html">Markdown is supported.</a> All HTML tags are discarded.</div>
+		<div class="small field-help"><a href="https://kramdown.gettalong.org/syntax.html">Markdown is supported.</a> All HTML tags are not honored.</div>
 	</fieldset>
 	<fieldset class="form-group">
 		<input aria-label="Name" type="text" name="fields[name]" placeholder="Name" />
@@ -40,7 +40,7 @@
 		{% if site.staticman.reCaptcha.siteKey %}
 		<div class="pull-right g-recaptcha" data-sitekey="{{ site.staticman.reCaptcha.siteKey }}"></div>
 		{% endif %}
-		<button id="staticman-submit-btn" type="submit" class="btn btn-primary">Submit Comment</button>
+		<button type="submit" class="btn btn-primary">Submit Comment</button>
 		<span class="spinner"></span>
 	</div>
 

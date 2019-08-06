@@ -77,16 +77,16 @@ $spinner-dimension: $line-height-computed + $padding-base-vertical * 2 + 2; // b
 
 .spinner {
 	display: inline-block;
-	width: $spinner-dimention;
-	height: $spinner-dimention;
+	width: $spinner-dimension;
+	height: $spinner-dimension;
 	margin-left: 0.3em;
 	margin-right: 0.3em;
 	vertical-align: middle;
 	&:after {
 		content: " ";
 		display: block;
-		width: $spinner-dimention;
-		height: $spinner-dimention;
+		width: $spinner-dimension;
+		height: $spinner-dimension;
 		border-radius: 50%;
 		border-width: 0.3em;
 		border-style: solid;

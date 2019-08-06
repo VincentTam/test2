@@ -107,4 +107,4 @@ comments:
     # ENCRYPT reCaptcha secret key using Staticman /encrypt endpoint
     # i.e. https://{STATICMAN API INSTANCE}/v3/encrypt/{your-site-secret}
     # For more information, visit https://staticman.net/docs/encryption
-    secret: "o9Sgvs5634hJmFg235kKotgxGdT/TzM1s4xDbs2sOEAD008xx6q1wgzjBJw1DYSUxEqmtXYpnN2LBtaPU+ji8U0F1qm0gkhYo20jR1fJOYRfmjqkovZ+dtAYFfrF1wlwg3KBMdaYLla6zmmi69PXwVmFwHh1PmU46qscl25tPDLQyNPN7m5ZNvlZWd2sAwj29wI9HLNHd5Sme5caXvGx724nOl5dZ7hGa00tPgBIQGTfm91wnT5nxJ/QqW0YLaC+zamJPnl3jrdFGKAfRNrnkL6BqUfGW0dbC+Mpvmt6qqdhZcoWJCFhyt1Korp4ple4ZMwwvyxz3tdDEO0rNXRK5A=="
+    secret: "McI7TIlDXwqDkvboiUPhMWdBSwPyHdsMS6magUShqeASffAXq5+nAq89+PIHlGdLX0bQ1bx1nRl8JvByXwc0aL//Bx0ft0KNzql7F7SUE8PrW1ilh/PmVNzRf6mxAg81D3BL8AYCuew++CqKhDWCv88ZqVs5qIMWy1n580F2J14="

@@ -115,12 +115,13 @@ url-pretty: "MyWebsite.com"  # eg. "deanattali.com/beautiful-jekyll"
 staticman:
   repository : abelcheung/test2 # GitHub username/repository eg. "daattali/beautiful-jekyll"
   branch     : master # If you're not using `master` branch, then you also need to update the `branch` parameter in `staticman.yml`
-  endpoint   : https://api.staticman.net/v3/entry/ # URL of your own deployment, with a trailing slash (will fallback to a public GitLab instance) eg. https://<your-api>/v3/entry/github/
+  endpoint   : https://dev.staticman.net/v3/entry/github/ # URL of your own deployment, with a trailing slash (will fallback to a public GitLab instance) eg. https://<your-api>/v3/entry/github/
   reCaptcha:
     # reCaptcha for Staticman (OPTIONAL, but recommended for spam protection)
     # If you use reCaptcha, you must also set these parameters in staticman.yml
     siteKey  : 6Lc8hK0UAAAAAIEBh7mR9J8yIpXIgs85oq0QfrXL # Use your own site key, you need to apply for one on Google
-    secret   : o9Sgvs5634hJmFg235kKotgxGdT/TzM1s4xDbs2sOEAD008xx6q1wgzjBJw1DYSUxEqmtXYpnN2LBtaPU+ji8U0F1qm0gkhYo20jR1fJOYRfmjqkovZ+dtAYFfrF1wlwg3KBMdaYLla6zmmi69PXwVmFwHh1PmU46qscl25tPDLQyNPN7m5ZNvlZWd2sAwj29wI9HLNHd5Sme5caXvGx724nOl5dZ7hGa00tPgBIQGTfm91wnT5nxJ/QqW0YLaC+zamJPnl3jrdFGKAfRNrnkL6BqUfGW0dbC+Mpvmt6qqdhZcoWJCFhyt1Korp4ple4ZMwwvyxz3tdDEO0rNXRK5A== # ENCRYPT your password by going to https://staticman3.herokuapp.com/v3/encrypt/<your-site-secret>
+    secret   : McI7TIlDXwqDkvboiUPhMWdBSwPyHdsMS6magUShqeASffAXq5+nAq89+PIHlGdLX0bQ1bx1nRl8JvByXwc0aL//Bx0ft0KNzql7F7SUE8PrW1ilh/PmVNzRf6mxAg81D3BL8AYCuew++CqKhDWCv88ZqVs5qIMWy1n580F2J14=
+    # ENCRYPT your password by going to https://staticman3.herokuapp.com/v3/encrypt/<your-site-secret>
 
 # --- Misc --- #
 

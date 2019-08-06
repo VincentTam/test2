@@ -395,16 +395,6 @@ img {
   border-bottom-left-radius: 5px;
 }
 
-#header-gh-btns {
-  margin-bottom: 15px;
-}
-@media only screen and (max-width: 500px) {
-  #header-gh-btns > iframe {
-    display: block;
-    margin-bottom: 5px;
-  }
-}
-
 .post-meta {
 	color: #808080;
 	font-style: italic;
@@ -433,12 +423,6 @@ img {
   color: #FFF;
   border: 1px solid $hover-col;
   background-color: $hover-col;
-}
-
-/* --- Social media sharing section --- */
-
-#social-share-section {
-  margin-bottom: 30px;
 }
 
 /* --- Notification boxes --- */
